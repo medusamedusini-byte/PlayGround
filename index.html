@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101510" />
+  <title>Hollowgrove — La última vigilia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <canvas id="game" aria-label="Arena de juego"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar" id="hud" aria-live="polite">
+      <div class="brand-mark"><span class="brand-icon">✳</span><span>HOLLOWGROVE</span></div>
+      <div class="run-stats">
+        <div class="stat-chip"><span class="stat-label">VIGILIA</span><strong id="timer">00:00</strong></div>
+        <div class="stat-chip"><span class="stat-label">NIVEL</span><strong id="level">01</strong></div>
+        <div class="stat-chip kills-chip"><span class="stat-label">ALMAS</span><strong id="kills">0</strong></div>
+      </div>
+      <button class="icon-button" id="soundBtn" aria-label="Activar o desactivar sonido" title="Sonido">♫</button>
+    </header>
+    <section class="health-wrap" id="healthWrap" aria-label="Salud">
+      <div class="health-icon">♥</div><div class="health-track"><div id="healthFill"></div></div><span id="healthText">100 / 100</span>
+    </section>
+    <section class="xp-wrap" id="xpWrap"><div class="xp-track"><div id="xpFill"></div></div><span id="xpText">0 / 8</span></section>
+    <div class="objective" id="objective"><span class="objective-dot"></span><span>Sobrevive a la noche</span><span class="objective-time" id="goalTime">03:00</span></div>
+    <div class="weapon-badge" id="weaponBadge"><span class="weapon-glyph">⌁</span><div><b>ESPINAS</b><small>Autoataque</small></div></div>
+    <div class="toast" id="toast"></div>
+    <div class="controls-hint" id="controlsHint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>mover</span><i>·</i><span>el arco ataca solo</span></div>
+
+    <section class="overlay intro-overlay" id="intro">
+      <div class="intro-copy">
+        <div class="eyebrow"><span></span> UNA AVENTURA DE SUPERVIVENCIA</div>
+        <h1>La última<br><em>vigilia.</em></h1>
+        <p>Algo antiguo ha despertado bajo el bosque.<br>Resiste hasta el alba. No dejes que te rodeen.</p>
+        <div class="hero-select"><div class="portrait"><span>✦</span></div><div><small>GUARDIÁN DEL BOSQUE</small><strong>La Guardiana</strong></div><span class="select-check">✓</span></div>
+        <button class="primary-button" id="startBtn"><span>Entrar en la espesura</span><b>↗</b></button>
+        <div class="best-run" id="bestRun">✧ <span>Tu mejor vigilia</span><b>—</b></div>
+      </div>
+      <div class="intro-art" aria-hidden="true"><div class="moon"></div><div class="intro-tree tree-one">♠</div><div class="intro-tree tree-two">♠</div><div class="intro-tree tree-three">♠</div><div class="intro-hero"><i></i><b></b><span></span></div><div class="intro-firefly f1"></div><div class="intro-firefly f2"></div><div class="intro-firefly f3"></div><div class="art-caption">BOSQUE DE LOS OLVIDADOS <span>—</span> 01</div></div>
+      <div class="intro-footer"><span>© HOLLOWGROVE · CRÓNICAS DEL UMBRAL</span><span>WASD / FLECHAS PARA MOVERTE</span></div>
+    </section>
+
+    <section class="overlay level-overlay hidden" id="levelOverlay">
+      <div class="level-panel"><div class="eyebrow"><span></span> EL BOSQUE TE OBSERVA</div><h2>Elige tu <em>don.</em></h2><p class="level-subtitle">La espesura concede poder… por ahora.</p><div class="upgrade-grid" id="upgradeGrid"></div><div class="level-foot"><span>PAUSA DE NIVEL</span><span>ELIGE UNA MEJORA PARA CONTINUAR</span></div></div>
+    </section>
+
+    <section class="overlay end-overlay hidden" id="endOverlay">
+      <div class="end-panel"><div class="end-symbol" id="endSymbol">✦</div><div class="eyebrow" id="endEyebrow"><span></span> LA NOCHE HA TERMINADO</div><h2 id="endTitle">El alba <em>llega.</em></h2><p id="endDescription">El bosque recordará tu nombre.</p><div class="run-results"><div><small>TIEMPO</small><b id="resultTime">00:00</b></div><div><small>ALMAS</small><b id="resultKills">0</b></div><div><small>NIVEL</small><b id="resultLevel">1</b></div></div><button class="primary-button" id="retryBtn"><span>Volver a la espesura</span><b>↗</b></button><button class="text-button" id="menuBtn">Volver al menú</button></div>
+    </section>
+    <button class="pause-button hidden" id="pauseBtn" aria-label="Pausar">Ⅱ</button>
+    <div class="mobile-controls" id="mobileControls"><div class="joystick" id="joystick"><div class="joy-knob" id="joyKnob"></div></div><button id="dashBtn" class="dash-button">✦<small>IMPULSO</small></button></div>
+    <div class="pause-toast hidden" id="pauseToast"><div><span>Ⅱ</span><b>PAUSA</b><small>PULSA ESC PARA CONTINUAR</small><button id="resumeBtn">CONTINUAR <b>↗</b></button></div></div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
